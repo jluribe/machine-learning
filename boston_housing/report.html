@@ -13872,12 +13872,12 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">explained_variance_score</span><span class="p">,</span> <span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">make_scorer</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
 <span class="k">def</span> <span class="nf">fit_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -13894,10 +13894,10 @@ O k-fold é o método de validação que define qual é a melhor combinação de
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)}</span>
 
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
-    <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">explained_variance_score</span><span class="p">)</span>
+    <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">r2_score</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create the grid search object</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_fnc</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_sets</span><span class="p">)</span>
 
     <span class="c1"># Fit the grid search object to the data to compute the optimal model</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -13934,7 +13934,7 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Fit the training data to the model using grid search</span>
@@ -13954,7 +13954,7 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Parameter &#39;max_depth&#39; is 5 for the optimal model.
+<pre>Parameter &#39;max_depth&#39; is 4 for the optimal model.
 </pre>
 </div>
 </div>
@@ -13968,7 +13968,7 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> O max_depth ótimo é 5, agora na pergunta 6 eu escolhi o valor max_depth 3 pelos motivos explicados na questão.</p>
+<p><strong>Answer: </strong> O max_depth ótimo é 4, agora na pergunta 6 eu escolhi o valor max_depth 3 pelos motivos explicados na questão.</p>
 
 </div>
 </div>
@@ -14017,7 +14017,7 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Produce a matrix for client data</span>
@@ -14040,9 +14040,9 @@ O k-fold é o método de validação que define qual é a melhor combinação de
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predicted selling price for Client 1&#39;s home: $411,000.00
-Predicted selling price for Client 2&#39;s home: $175,700.00
-Predicted selling price for Client 3&#39;s home: $875,700.00
+<pre>Predicted selling price for Client 1&#39;s home: $391,183.33
+Predicted selling price for Client 2&#39;s home: $189,123.53
+Predicted selling price for Client 3&#39;s home: $942,666.67
 </pre>
 </div>
 </div>
@@ -14059,9 +14059,9 @@ Predicted selling price for Client 3&#39;s home: $875,700.00
 <p><strong>Answer: </strong>
 What price would you recommend each client sell his/her home at?</p>
 <ol>
-<li>Client 1 home: 411,000.00    (5 quartos),</li>
-<li>Client 2 home: 175,700.00    (4 quartos),</li>
-<li>Client 3 home: 875,700.00    (8 quartos).</li>
+<li>Client 1 home: 391,183.33    (5 quartos),</li>
+<li>Client 2 home: 189,123.53    (4 quartos),</li>
+<li>Client 3 home: 942,666.67    (8 quartos).</li>
 </ol>
 <p>Do these prices seem reasonable given the values for the respective features?</p>
 <ul>
@@ -14086,7 +14086,7 @@ tem maior quantidade de vizinhos de baixa renda e maior quantidade de alunos por
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">vs</span><span class="o">.</span><span class="n">PredictTrials</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">fit_model</span><span class="p">,</span> <span class="n">client_data</span><span class="p">)</span>
@@ -14102,18 +14102,18 @@ tem maior quantidade de vizinhos de baixa renda e maior quantidade de alunos por
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Trial 1: $411,000.00
-Trial 2: $411,417.39
+<pre>Trial 1: $391,183.33
+Trial 2: $424,935.00
 Trial 3: $415,800.00
-Trial 4: $428,316.00
-Trial 5: $413,334.78
+Trial 4: $420,622.22
+Trial 5: $418,377.27
 Trial 6: $411,931.58
 Trial 7: $399,663.16
 Trial 8: $407,232.00
-Trial 9: $402,531.82
+Trial 9: $351,577.61
 Trial 10: $413,700.00
 
-Range in prices: $28,652.84
+Range in prices: $73,357.39
 </pre>
 </div>
 </div>
@@ -14154,7 +14154,7 @@ A data nós é util para contruir modelos de machine learning que podem ser util
 Sim, porque com esses dados já podemos obter os primeiros cálculos.</p>
 </li>
 <li><p><em>Is the model robust enough to make consistent predictions?</em>
-Sim, revisando os 10 resultados da exercício <code>sensitivity</code>, onde a menor previssão foi 399,663.16 e a maior 428,316.00 são valores aceitáveis para o Client 1 apresentado na questão anterior.</p>
+Sim, revisando os 10 resultados da exercício <code>sensitivity</code>, onde a menor previssão foi 351,577.61 e a maior 424,935.00 são valores aceitáveis para o Client 1 apresentado na questão anterior.</p>
 </li>
 <li><p><em>Would data collected in an urban city like Boston be applicable in a rural city?</em>
 Não, acredito que para uma área rural deve se utilizar outros critérios para avaliar o imóvel.</p>
