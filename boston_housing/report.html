@@ -11849,23 +11849,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -11892,7 +11892,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -12059,7 +12059,7 @@ Segue a análise independente para cada variável com base nós dados da amostra
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>0.923</p>
+<p><strong>Answer:</strong> Para o exemplo de regreção continua e considerando que o coeficiente de determinação pode ter valores de 0 até 1, onde 0 indica que tem um desempenho ruim e 1 significa que o algoritmo tem um desempenho perfeito, em nosso exemplo o coeficiente de determinação tem o valor de 0.923 que é um valor muito próximo de 1, pelo qual considero que esse modelo tem um bom desempenho.</p>
 
 </div>
 </div>
@@ -12085,7 +12085,7 @@ Segue a análise independente para cada variável com base nós dados da amostra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
@@ -12132,7 +12132,8 @@ Segue a análise independente para cada variável com base nós dados da amostra
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>Caso não separemos os dados podemos ter um problema de vazamento de dados no modelo, o modelo seria bom apenas para os dados conhecidos, não teriamos como validar com dados descohencidos (novos). Os dados de teste serve  para validar se o nosso modelo da boas respostas mesmo que os dados sejam descohecidos.</p>
+<p><strong>Answer: </strong>Caso não separemos os dados podemos ter um problema de vazamento de dados no modelo, ou seja: o modelo seria bom apenas para os dados conhecidos, não teriamos como validar com dados descohencidos (novos). Os dados de teste serve  para validar se o nosso modelo da boas respostas mesmo que os dados sejam descohecidos.</p>
+<p>*Vazamento de dados significa: "o nosso modelo será avaliado com base em suas previsões sobre dados que já foram vistos. Nesse caso, o seu desempenho pode não ser representativo do que acontecerá com dados novos!" Definição na teoria da Udacity.</p>
 
 </div>
 </div>
@@ -13262,6 +13263,9 @@ Para o modelo escolhido na pergunta um não acontece nenhuma mudança, ela é co
 <li><p>O que acontece com a curva de testes? Se incluisemos mais pontos de treinamento beneficiaria o modelo?
 Com um volume maior a 50 amostrar a curva quase fica estável em mais ou menos ~0.6, e se aumentamos os dados de amostra não devemos ter grandes mudanças no resultado a mesma fica quase estável em ~0.6.</p>
 </li>
+<li><p>Mais pontos de treinamento beneficiar o modelo?
+Não acredito que beneficiaria o modelo, o score de treinamento está muito próximo de ~1 e o score de teste a medida que aumenta a quantidade de pontos não mostra se aproximar para 1, ao contrario ela mostra uma leve queda no score mas o menos contante em ~0.6.</p>
+</li>
 </ol>
 
 </div>
@@ -13777,7 +13781,7 @@ Agora quando o max_depth é 10 vemos que a curva de treinamento tem um excelente
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> Eu escolheria o max_depth igual a 3, porque é a quem tem menos viés e menos variância e mostra ser um modelo mas generalizado para dados desconhecidos.</p>
+<p><strong>Answer: </strong> Eu escolheria o max_depth igual a 3, porque é a quem tem menos viés e menos variância e mostra um melhor desempenho para dados desconhecidos com relação aos outros max_depth.</p>
 
 </div>
 </div>
@@ -13830,7 +13834,10 @@ Agora quando o max_depth é 10 vemos que a curva de treinamento tem um excelente
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de treinamento e teste. Também auxilia o grid search para ter uma maior quantidade de combinações para definir o melhor modelo.</p>
+What is the k-fold cross-validation training technique?
+k-fold É um método de validação cruzada aplicado ao conjunto de dados de treinamento, o método consiste em dividir os dados de treinamento em K subconjuntos e iterar K vezes, onde em cada iteração um dos subconjuntos é separado e utilizado na validaçao (utilizado apenas uma vez) e os outros K-1 subconjuntos são utilizados no treinamento do modelo. O resultado final desse processo é o desempenho médio do modelo nos K testes. O objetivo de repetir os testes múltiplas vezes é aumentar a confiabilidade da estimativa da precisão do modelo.</p>
+<p>What benefit does this technique provide for grid search when optimizing a model?
+O k-fold é o método de validação que define qual é a melhor combinação de parâmetros para um algoritmo e da um score na confiabilidade da estimativa do modelo.</p>
 
 </div>
 </div>
@@ -13865,7 +13872,7 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13881,10 +13888,10 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
     <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a decision tree regressor object</span>
-    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from 1 to 10</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)}</span>
 
     <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using &#39;make_scorer&#39; </span>
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">explained_variance_score</span><span class="p">)</span>
@@ -13927,7 +13934,7 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Fit the training data to the model using grid search</span>
@@ -13947,7 +13954,7 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Parameter &#39;max_depth&#39; is 10 for the optimal model.
+<pre>Parameter &#39;max_depth&#39; is 5 for the optimal model.
 </pre>
 </div>
 </div>
@@ -13961,7 +13968,7 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> O max_depth ótimo é 10, agora na pergunta 6 eu escolhi o valor max_depth 3 pelos motivos explicados na questão.</p>
+<p><strong>Answer: </strong> O max_depth ótimo é 5, agora na pergunta 6 eu escolhi o valor max_depth 3 pelos motivos explicados na questão.</p>
 
 </div>
 </div>
@@ -14010,7 +14017,7 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Produce a matrix for client data</span>
@@ -14033,9 +14040,9 @@ K-fold é uma ferramenta que facilita o agrupamento de conjunto de dados de trei
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Predicted selling price for Client 1&#39;s home: $407,400.00
-Predicted selling price for Client 2&#39;s home: $277,200.00
-Predicted selling price for Client 3&#39;s home: $913,500.00
+<pre>Predicted selling price for Client 1&#39;s home: $411,000.00
+Predicted selling price for Client 2&#39;s home: $175,700.00
+Predicted selling price for Client 3&#39;s home: $875,700.00
 </pre>
 </div>
 </div>
@@ -14052,9 +14059,9 @@ Predicted selling price for Client 3&#39;s home: $913,500.00
 <p><strong>Answer: </strong>
 What price would you recommend each client sell his/her home at?</p>
 <ol>
-<li>Client 1 home: 407,400.00    (5 quartos),</li>
-<li>Client 2 home: 277,200.00    (4 quartos),</li>
-<li>Client 3 home: 913,500.00    (8 quartos).</li>
+<li>Client 1 home: 411,000.00    (5 quartos),</li>
+<li>Client 2 home: 175,700.00    (4 quartos),</li>
+<li>Client 3 home: 875,700.00    (8 quartos).</li>
 </ol>
 <p>Do these prices seem reasonable given the values for the respective features?</p>
 <ul>
@@ -14079,7 +14086,7 @@ tem maior quantidade de vizinhos de baixa renda e maior quantidade de alunos por
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">vs</span><span class="o">.</span><span class="n">PredictTrials</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">fit_model</span><span class="p">,</span> <span class="n">client_data</span><span class="p">)</span>
@@ -14095,18 +14102,18 @@ tem maior quantidade de vizinhos de baixa renda e maior quantidade de alunos por
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Trial 1: $407,400.00
-Trial 2: $397,950.00
-Trial 3: $405,825.00
-Trial 4: $367,500.00
-Trial 5: $396,480.00
-Trial 6: $435,600.00
-Trial 7: $367,500.00
-Trial 8: $437,220.00
-Trial 9: $405,825.00
-Trial 10: $395,850.00
+<pre>Trial 1: $411,000.00
+Trial 2: $411,417.39
+Trial 3: $415,800.00
+Trial 4: $428,316.00
+Trial 5: $413,334.78
+Trial 6: $411,931.58
+Trial 7: $399,663.16
+Trial 8: $407,232.00
+Trial 9: $402,531.82
+Trial 10: $413,700.00
 
-Range in prices: $69,720.00
+Range in prices: $28,652.84
 </pre>
 </div>
 </div>
@@ -14147,7 +14154,7 @@ A data nós é util para contruir modelos de machine learning que podem ser util
 Sim, porque com esses dados já podemos obter os primeiros cálculos.</p>
 </li>
 <li><p><em>Is the model robust enough to make consistent predictions?</em>
-Sim, de acordo com as validações nas questões anteriores.</p>
+Sim, revisando os 10 resultados da exercício <code>sensitivity</code>, onde a menor previssão foi 399,663.16 e a maior 428,316.00 são valores aceitáveis para o Client 1 apresentado na questão anterior.</p>
 </li>
 <li><p><em>Would data collected in an urban city like Boston be applicable in a rural city?</em>
 Não, acredito que para uma área rural deve se utilizar outros critérios para avaliar o imóvel.</p>
