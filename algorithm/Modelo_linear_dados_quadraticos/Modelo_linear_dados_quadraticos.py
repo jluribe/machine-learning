@@ -19,6 +19,7 @@ score = make_scorer(explained_variance_score)
 X = np.reshape(np.random.normal(scale=2,size=size),(-1,1))
 y = np.array([[1 - 2*x[0] +x[0]**2] for x in X])
 
+
 def plot_curve():
     reg = LinearRegression()
     reg.fit(X,y)
