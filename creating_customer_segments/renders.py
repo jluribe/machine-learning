@@ -3,6 +3,18 @@ import matplotlib.cm as cm
 import pandas as pd
 import numpy as np
 from sklearn.decomposition import pca
+import seaborn as sns
+
+def percentile_heatmap(indices, data):
+	# look at percentile ranks
+	pcts = 100. * data.rank(axis=0, pct=True).iloc[indices].round(decimals=3)
+
+	# visualize percentiles with heatmap
+	sns.heatmap(pcts, yticklabels=['Index '+str(x) for x in indices], annot=True, linewidth=.1, vmax=99, fmt='.1f', cmap='YlGnBu')
+	plt.title('Percentile ranks of\nsamples\' category spending')
+	plt.xticks(rotation=45, ha='center');
+
+	return pcts
 
 def pca_results(good_data, pca):
 	'''
