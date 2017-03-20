@@ -62,7 +62,8 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set 'state' as a tuple of relevant data for the agent
-        state = (waypoint, str(inputs), deadline)
+        # state = (waypoint, str(inputs), deadline)
+        state = (waypoint, inputs['light'], inputs['oncoming'], inputs['left'])
         return state
 
 
@@ -74,6 +75,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Calculate the maximum Q-value of all actions for a given state
+        # maxQ = max(self.Q[state].values())
         maxQ = max(self.Q[state], key=self.Q[state].get)
 
         return maxQ 
@@ -112,7 +114,10 @@ class LearningAgent(Agent):
         if not self.learning:
             action = random.choice(self.valid_actions)
         else:
-            action = self.get_maxQ(state)
+            if (random.random() < self.epsilon):
+                action = random.choice(self.valid_actions)
+            else:
+                action = self.get_maxQ(state)
 
         return action
 
