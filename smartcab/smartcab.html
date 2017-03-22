@@ -13019,7 +13019,7 @@ M9MAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ol>
-<li>The agent register minor and major violation and accident with total bad actions between ~[%77.78 - %88,88] and only accidents ~%22,22</li>
+<li>The agent register a total bad actions almost %88,88 (the dotted black) and only accidents was almost %22,22, Because the agent is in non-learning mode.</li>
 <li>Yes, It does. The reliabilty is sometime ~10% that means there is a possibility to finish the trip before the deadline.</li>
 <li>The agent was penalized from -4.5 to -6.2, and the agent was penalized heavily.</li>
 <li>No, It doesn't, The agent is not improving when we increse the trials.</li>
@@ -15795,6 +15795,15 @@ ACGRBQAAEBJZAAAAIZEFAAAQElkAAAAhkQUAABBawps6Ks8Jo3YAAAAASUVORK5CYII=
  -- left : -19.62</p>
 <ul>
 <li><em>The q-learning result is advice to stop, although the agent can make a right turn on the traffic light is red, but the advice is stop (None : 1.62) because the car from the left is moving forward.</em></li>
+</ul>
+<p>4.
+('forward', 'green', None, 'right')
+ -- forward : 0.00
+ -- right : 0.69
+ -- None : -2.01
+ -- left : 0.19</p>
+<ul>
+<li><em>In this case, the waypoint asks to go forward when the traffic light is green and there is no oncoming traffic and the left car is turning to the right, so the agent could go forward, but the hightest q-value recommends turn right (right: 0.69) when the agent can go forward with safe (forward: 0.00).</em></li>
 </ul>
 
 </div>
